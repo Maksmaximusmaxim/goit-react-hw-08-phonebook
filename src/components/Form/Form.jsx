@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import css from '../Form/Form.module.css'
  export class Form extends Component {
     state={
         name: '',
@@ -27,9 +28,10 @@ import React, { Component } from 'react';
       render(){
          return (
         <form onSubmit={this.onSubmit}>
-        <label >
+        <label className={css.label}>
           имя
         <input
+        className={css.input}
          
           onChange={this.alterationValue}
           type="text"
@@ -39,8 +41,9 @@ import React, { Component } from 'react';
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required />
         </label>
-        <label > номер
+        <label className={css.label}> номер
           <input
+          className={css.input}
           onChange={this.alterationValue}
         value={this.state.number}
          type="tel"
@@ -51,7 +54,7 @@ import React, { Component } from 'react';
 />
         </label>
          
-        <button type='submit'>Добавить контакт</button>
+        <button className={css.formbtn} type='submit'>Добавить контакт</button>
          </form>)
       }
    

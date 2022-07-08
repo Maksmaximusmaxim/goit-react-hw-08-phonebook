@@ -22,7 +22,7 @@ formData = data =>{
 
   render(){
      return (
-    <div>
+    <div >
       <h1>Phonebook</h1>
  <Form id={this.loginInputId} onSubmit={this.formData}/>
  <h1>Contacts</h1>
