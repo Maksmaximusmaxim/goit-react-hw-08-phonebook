@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
  export class Form extends Component {
     state={
-        name: ''
+        name: '',
+        number: ''
     }
     onSubmit=e=>{
         e.preventDefault();
@@ -12,22 +13,24 @@ import React, { Component } from 'react';
       
       reset =()=>{
         this.setState({
-          name: ''
+          name: '',
+          number: ''
         })
       }
     alterationValue =e=>{
         
+        const { name, value } = e.target;
         this.setState({
-          name:e.target.value
+          [name]:value
         })
       }
       render(){
          return (
         <form onSubmit={this.onSubmit}>
-        <label htmlFor={this.props.id}>
+        <label >
           имя
         <input
-         id={this.props.id}
+         
           onChange={this.alterationValue}
           type="text"
           value={this.state.name}
@@ -36,6 +39,18 @@ import React, { Component } from 'react';
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required />
         </label>
+        <label > номер
+          <input
+          onChange={this.alterationValue}
+        value={this.state.number}
+         type="tel"
+         name="number"
+         pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+  title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+  required
+/>
+        </label>
+         
         <button type='submit'>Добавить контакт</button>
          </form>)
       }
