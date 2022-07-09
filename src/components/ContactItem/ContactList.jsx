@@ -8,7 +8,7 @@ export const ContactList =({dataSubscribers})=>{
             console.log(id);
             console.log(name)
             return (
-                <ContactItem  id={id} name={name} number={number}/>
+                <ContactItem  key={id} name={name} number={number}/>
             )
             })}
         </ul>

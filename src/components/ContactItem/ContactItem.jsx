@@ -1,8 +1,8 @@
 import React from 'react';
-export const ContactItem =({id,name,number})=>{
+export const ContactItem =({key,name,number})=>{
     
     return(
-        <li key={id}>{name} : {number}</li>
+        <li key={key}>{name} : {number}</li>
     )
     
 }
