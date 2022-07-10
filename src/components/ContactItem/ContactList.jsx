@@ -5,9 +5,9 @@ export const ContactList =({dataSubscribers,onClick})=>{
     return(
         <ul>
            {dataSubscribers.map(({id,data:{name,number}})=>{
-    
+    console.log(id)
             return (
-                <ContactItem  key={id} name={name} number={number} onClick={onClick}/>
+                <ContactItem  id={id} name={name} number={number} onClick={onClick}/>
             )
             })}
         </ul>

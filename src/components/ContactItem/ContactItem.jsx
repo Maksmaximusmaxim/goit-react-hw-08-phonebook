@@ -1,8 +1,15 @@
 import React from 'react';
-export const ContactItem =({key,name,number,onClick})=>{
-    console.log(key)
+export const ContactItem =({id,name,number,onClick})=>{
+    console.log(id)
+    console.log(id)
+    console.log(id)
+    console.log(id)
+    console.log(id)
+    
+    
+
     return(
-        <li key={key}>{name} : {number}<button type='button' onClick={()=>onClick(key)}>Удалить</button></li>
+        <li key={id}>{name} : {number}<button type='button' onClick={()=>onClick(id)}>Удалить</button></li>
     )
     
 }
