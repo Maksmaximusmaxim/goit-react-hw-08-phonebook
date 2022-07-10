@@ -45,9 +45,9 @@ onChangeFilter=e=>{
   })
 }
 deleteContact = id =>{
+  console.log(id)
   
-  const delCon =this.state.contacts.filter(contact =>  contact.id !== id);
- return this.setState(()=>{ return {contacts: delCon}}
+ return this.setState(prevState=>({contacts: prevState.contacts.filter(contact =>  contact.id !== id)})
     
     
   )

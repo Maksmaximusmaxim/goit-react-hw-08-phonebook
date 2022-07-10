@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {ContactItem} from './ContactItem'
 export const ContactList =({dataSubscribers,onClick})=>{
   
@@ -15,3 +16,7 @@ export const ContactList =({dataSubscribers,onClick})=>{
 
     
 }
+// ContactList.propTypes = {
+//     dataSubscribers: ,
+//     onClick: PropTypes.func
+// }
