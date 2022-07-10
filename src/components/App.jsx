@@ -10,7 +10,7 @@ export class App extends Component {
     contacts: [ ],
     filter: '',
   }
-loginInputId = nanoid();
+
 
 formData = data =>{
  
@@ -20,7 +20,7 @@ formData = data =>{
  
 
   const contact = {
-    id:this.loginInputId,
+    id:nanoid(),
     data:data
   };
   
@@ -44,6 +44,13 @@ onChangeFilter=e=>{
    filter: e.target.value
   })
 }
+deleteContact = id =>{
+  console.log(id)
+ return this.setState(prevState=>({contacts: prevState.contacts.filter(contact =>  contact.id === id)})
+    
+    
+  )
+}
 
   render(){
     const normolizeFilter = this.state.filter.toLowerCase();
@@ -51,14 +58,15 @@ onChangeFilter=e=>{
      return contact.data.name.toLowerCase().includes(normolizeFilter)
     });
     
+    
  
      return (
     <div >
       <h1>Phonebook</h1>
- <Form id={this.loginInputId} onSubmit={this.formData}/>
+ <Form  onSubmit={this.formData}/>
  <h1>Contacts</h1>
  <Filter value={this.state.filter} onChange={this.onChangeFilter} /> 
-<ContactList  dataSubscribers={filterContacts}/>
+<ContactList  dataSubscribers={filterContacts} onClick={this.deleteContact}/>
     </div>
   )
   }
