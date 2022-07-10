@@ -1,3 +1,4 @@
+import Notiflix from 'notiflix';
 import React, { Component } from 'react';
 import { Form } from '../components/Form/Form';
 import { nanoid } from "nanoid";
@@ -12,21 +13,33 @@ export class App extends Component {
 loginInputId = nanoid();
 
 formData = data =>{
+ 
+ 
 
   console.log(data);
+ 
 
   const contact = {
     id:this.loginInputId,
     data:data
   };
   
-  this.setState((prevState)=>{return {contacts : [contact, ...prevState.contacts]}})
-  console.log(this.state.contacts)
+  this.setState((prevState)=>{
+    
+  const repetitionCheck = this.state.contacts.some(p=> p.data.name===data.name)
+      
+    if(repetitionCheck){
+      Notiflix.Notify.info("Этот контакт уже добавлен" );
+      console.log(repetitionCheck)
+      return
+    }
+    return {contacts : [contact, ...prevState.contacts]}})
+  
  
 }
  
 onChangeFilter=e=>{
-  console.log(e.target)
+  
   this.setState({
    filter: e.target.value
   })
@@ -38,6 +51,7 @@ onChangeFilter=e=>{
      return contact.data.name.toLowerCase().includes(normolizeFilter)
     });
     
+ 
      return (
     <div >
       <h1>Phonebook</h1>
