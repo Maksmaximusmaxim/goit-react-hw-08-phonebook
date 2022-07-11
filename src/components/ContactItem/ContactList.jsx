@@ -4,8 +4,7 @@ import { ContactItem } from './ContactItem';
 export const ContactList = ({ dataSubscribers , onClick }) => {
 
 console.log(dataSubscribers)
-console.log(dataSubscribers)
-console.log(dataSubscribers)
+
   return (
     <ul>
       {dataSubscribers.map(({ id,  name, number  }) => {
