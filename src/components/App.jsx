@@ -15,12 +15,14 @@ export class App extends Component {
 
     const contact = {
       id: nanoid(),
-      data: data,
+      name:data.name,
+      number:data.number
     };
 
     this.setState(prevState => {
+      console.log(prevState)
       const repetitionCheck = this.state.contacts.some(
-        p => p.data.name === data.name
+        p => p.name === contact.name
       );
 
       if (repetitionCheck) {
@@ -48,8 +50,9 @@ export class App extends Component {
   render() {
     const normolizeFilter = this.state.filter.toLowerCase();
     const filterContacts = this.state.contacts.filter(contact => {
-      return contact.data.name.toLowerCase().includes(normolizeFilter);
+      return contact.name.toLowerCase().includes(normolizeFilter);
     });
+    console.log(filterContacts)
 
     return (
       <div>
