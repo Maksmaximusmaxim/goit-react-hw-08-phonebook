@@ -16,7 +16,7 @@ export const ContactList =({dataSubscribers,onClick})=>{
 
     
 }
-// ContactList.propTypes = {
-//     dataSubscribers: ,
-//     onClick: PropTypes.func
-// }
+ContactList.propTypes = {
+    dataSubscribers: PropTypes.array.isRequired,
+    onClick: PropTypes.func.isRequired
+}

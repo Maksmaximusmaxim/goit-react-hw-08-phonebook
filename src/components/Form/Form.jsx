@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import css from '../Form/Form.module.css'
  export class Form extends Component {
     state={
@@ -58,4 +59,7 @@ import css from '../Form/Form.module.css'
          </form>)
       }
    
+}
+Form.propTypes = {
+  onSubmit:PropTypes.func.isRequired,
 }
