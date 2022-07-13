@@ -6,6 +6,9 @@ export class Form extends Component {
     name: '',
     number: '',
   };
+  static propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+  };
   onSubmit = e => {
     e.preventDefault();
     this.reset();
@@ -62,6 +65,4 @@ export class Form extends Component {
     );
   }
 }
-Form.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};
+
