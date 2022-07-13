@@ -10,7 +10,7 @@ console.log(dataSubscribers)
       {dataSubscribers.map(({ id,  name, number  }) => {
         
         return (
-          <ContactItem id={id} name={name} number={number} onClick={onClick} />
+          <ContactItem key={id} id={id} name={name} number={number} onClick={onClick} />
         );
       })}
     </ul>
