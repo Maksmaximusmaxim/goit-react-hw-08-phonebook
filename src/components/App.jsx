@@ -15,12 +15,12 @@ export class App extends Component {
 
     const contact = {
       id: nanoid(),
-      name:data.name,
-      number:data.number
+      name: data.name,
+      number: data.number,
     };
 
     this.setState(prevState => {
-      console.log(prevState)
+      console.log(prevState);
       const repetitionCheck = this.state.contacts.some(
         p => p.name === contact.name
       );
@@ -46,21 +46,18 @@ export class App extends Component {
       contacts: prevState.contacts.filter(contact => contact.id !== id),
     }));
   };
-  componentDidMount(){
-    
+  componentDidMount() {
     const localStoradgeContacts = localStorage.getItem('contacts');
     const parseContacts = JSON.parse(localStoradgeContacts);
-    if(parseContacts){
-     this.setState({contacts:parseContacts}) 
+    if (parseContacts) {
+      this.setState({ contacts: parseContacts });
     }
-    
   }
-  componentDidUpdate(prevProps, prevState){
-    console.log(prevState)
-if(this.state.contacts !==prevState.contacts ){
-  
-  localStorage.setItem('contacts', JSON.stringify(this.state.contacts))
-}
+  componentDidUpdate(prevProps, prevState) {
+    console.log(prevState);
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
   }
 
   render() {
@@ -68,7 +65,7 @@ if(this.state.contacts !==prevState.contacts ){
     const filterContacts = this.state.contacts.filter(contact => {
       return contact.name.toLowerCase().includes(normolizeFilter);
     });
-    console.log(filterContacts)
+    console.log(filterContacts);
 
     return (
       <div>
