@@ -1,5 +1,5 @@
 import Notiflix from 'notiflix';
-import  {useState, useEffect} from 'react';
+import  {useState} from 'react';
 import { Form } from '../components/Form/Form';
 import { nanoid } from 'nanoid';
 import { ContactList } from './ContactItem/ContactList';
