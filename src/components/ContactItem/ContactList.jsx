@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { ContactItem } from './ContactItem';
 export const ContactList = ({ dataSubscribers , onClick }) => {
 
-console.log(dataSubscribers)
+console.log(dataSubscribers ,'qweqweqe')
 
   return (
     <ul>

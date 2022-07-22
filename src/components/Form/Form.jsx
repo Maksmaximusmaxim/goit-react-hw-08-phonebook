@@ -1,42 +1,46 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import {useState} from 'react';
+// import PropTypes from 'prop-types';
 import css from '../Form/Form.module.css';
-export class Form extends Component {
-  state = {
-    name: '',
-    number: '',
-  };
-  static propTypes = {
-    onSubmit: PropTypes.func.isRequired,
-  };
-  onSubmit = e => {
+export function Form ({onSubmitb}) {
+  const [name, setName]=useState('');
+  const [number, setNumber] = useState('');
+
+  // static propTypes = {
+  //   onSubmit: PropTypes.func.isRequired,
+  // };
+ const onSubmit = e => {
     e.preventDefault();
-    this.reset();
-    this.props.onSubmit(this.state);
+   onSubmitb({name,number});
+   reset();
   };
 
-  reset = () => {
-    this.setState({
-      name: '',
-      number: '',
-    });
+const reset = () => {
+  setName('');
+  setNumber('');
   };
-  alterationValue = e => {
-    const { name, value } = e.target;
-    this.setState({
-      [name]: value,
-    });
+
+ const alterationValue = e => {
+  const { name, value } = e.target;
+  switch (name) {
+    case 'name':
+      setName(value)
+      break;
+    case 'number':
+    setNumber(value)
+    break;
+    default: return;
+  }
   };
-  render() {
+  
     return (
-      <form onSubmit={this.onSubmit}>
+      <form onSubmit={onSubmit}>
         <label className={css.label}>
           имя
           <input
             className={css.input}
-            onChange={this.alterationValue}
+            onChange={alterationValue}
             type="text"
-            value={this.state.name}
+            value={name}
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
@@ -48,8 +52,8 @@ export class Form extends Component {
           номер
           <input
             className={css.input}
-            onChange={this.alterationValue}
-            value={this.state.number}
+            onChange={alterationValue}
+            value={number}
             type="tel"
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -63,6 +67,6 @@ export class Form extends Component {
         </button>
       </form>
     );
-  }
+  
 }
 

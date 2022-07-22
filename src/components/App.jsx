@@ -1,83 +1,85 @@
 import Notiflix from 'notiflix';
-import React, { Component } from 'react';
+import  {useState, useEffect} from 'react';
 import { Form } from '../components/Form/Form';
 import { nanoid } from 'nanoid';
 import { ContactList } from './ContactItem/ContactList';
 import { Filter } from './Filter/Filter';
-export class App extends Component {
-  state = {
-    contacts: [],
-    filter: '',
-  };
+export function App () {
+const [contacts,setContacts] = useState([]);
+const [filter, setFilter]=useState('');
 
-  formData = data => {
-    console.log(data);
 
+// useEffect(()=>window.localStorage.setItem('contacts', JSON.stringify(contacts))
+// )
+
+  // componentDidMount() {
+  //   const localStoradgeContacts = localStorage.getItem('contacts');
+  //   const parseContacts = JSON.parse(localStoradgeContacts);
+  //   if (parseContacts) {
+  //     this.setState({ contacts: parseContacts });
+  //   }
+  // }
+  // componentDidUpdate(prevProps, prevState) {
+  //   console.log(prevState);
+  //   if (this.state.contacts !== prevState.contacts) {
+  //     localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+  //   }
+  // }
+ const formData = data => {
+   
     const contact = {
       id: nanoid(),
       name: data.name,
       number: data.number,
     };
 
-    this.setState(prevState => {
-      console.log(prevState);
-      const repetitionCheck = this.state.contacts.some(
+    setContacts(prevState => {
+      
+      const repetitionCheck = contacts.some(
         p => p.name === contact.name
       );
 
       if (repetitionCheck) {
-        Notiflix.Notify.info('Этот контакт уже добавлен');
-        console.log(repetitionCheck);
-        return;
-      }
-      return { contacts: [contact, ...prevState.contacts] };
+        return Notiflix.Notify.info('Этот контакт уже добавлен');
+        
+      } 
+      return ([contact, ...prevState])  
+      
+     
+     
     });
+    console.log(contacts , 'ferfer')
   };
-
-  onChangeFilter = e => {
-    this.setState({
-      filter: e.target.value,
-    });
+  console.log(contacts , 'ferfer12')
+ const onChangeFilter = e => {
+    setFilter(e.target.value);
   };
-  deleteContact = id => {
-    console.log(id);
-
-    return this.setState(prevState => ({
-      contacts: prevState.contacts.filter(contact => contact.id !== id),
-    }));
-  };
-  componentDidMount() {
-    const localStoradgeContacts = localStorage.getItem('contacts');
-    const parseContacts = JSON.parse(localStoradgeContacts);
-    if (parseContacts) {
-      this.setState({ contacts: parseContacts });
-    }
-  }
-  componentDidUpdate(prevProps, prevState) {
-    console.log(prevState);
-    if (this.state.contacts !== prevState.contacts) {
-      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
-    }
+const deleteContact = id => {     
+ return setContacts(prevState => {
+  return prevState.filter(c => c.id !== id)
+ }
+  
+   );
   }
 
-  render() {
-    const normolizeFilter = this.state.filter.toLowerCase();
-    const filterContacts = this.state.contacts.filter(contact => {
-      return contact.name.toLowerCase().includes(normolizeFilter);
-    });
-    console.log(filterContacts);
+
+ 
+    const normolizeFilter = filter.toLowerCase();
+    console.log(contacts , 'fefer');
+    const filterContacts = contacts.filter(contact =>{return contact.name.toLowerCase().includes(normolizeFilter)});
+    console.log(filterContacts , '123456');
 
     return (
       <div>
         <h1>Phonebook</h1>
-        <Form onSubmit={this.formData} />
+        <Form onSubmitb={formData} />
         <h1>Contacts</h1>
-        <Filter value={this.state.filter} onChange={this.onChangeFilter} />
+        <Filter value={filter} onChange={onChangeFilter} />
         <ContactList
           dataSubscribers={filterContacts}
-          onClick={this.deleteContact}
+          onClick={deleteContact}
         />
       </div>
     );
-  }
+  
 }
