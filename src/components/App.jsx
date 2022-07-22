@@ -1,16 +1,16 @@
 import Notiflix from 'notiflix';
-import  {useState} from 'react';
+import  {useState , useEffect} from 'react';
 import { Form } from '../components/Form/Form';
 import { nanoid } from 'nanoid';
 import { ContactList } from './ContactItem/ContactList';
 import { Filter } from './Filter/Filter';
+
 export function App () {
-const [contacts,setContacts] = useState([]);
+const [contacts,setContacts] = useState(JSON.parse(window.localStorage.getItem('contacts') ) ?? []);
 const [filter, setFilter]=useState('');
 
 
-// useEffect(()=>window.localStorage.setItem('contacts', JSON.stringify(contacts))
-// )
+useEffect(()=>{window.localStorage.setItem('contacts', JSON.stringify(contacts))},[contacts])
 
   // componentDidMount() {
   //   const localStoradgeContacts = localStorage.getItem('contacts');
@@ -50,6 +50,7 @@ const [filter, setFilter]=useState('');
     });
     console.log(contacts , 'ferfer')
   };
+
   console.log(contacts , 'ferfer12')
  const onChangeFilter = e => {
     setFilter(e.target.value);
