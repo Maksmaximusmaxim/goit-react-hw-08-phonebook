@@ -34,14 +34,15 @@ export function App() {
       name: data.name,
       number: data.number,
     };
-
-    setContacts(prevState => {
-      const repetitionCheck = contacts.some(p => p.name === contact.name);
-
-      if (repetitionCheck) {
+  const repetitionCheck = contacts.some(p => p.name === contact.name);
+  if (repetitionCheck) {
         return Notiflix.Notify.info('Этот контакт уже добавлен');
       }
-      return [contact, ...prevState];
+    setContacts(prevState => {
+      
+
+    
+    return [contact, ...prevState];
     });
     console.log(contacts, 'ferfer');
   };
