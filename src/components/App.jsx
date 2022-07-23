@@ -1,16 +1,19 @@
 import Notiflix from 'notiflix';
-import  {useState , useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import { Form } from '../components/Form/Form';
 import { nanoid } from 'nanoid';
 import { ContactList } from './ContactItem/ContactList';
 import { Filter } from './Filter/Filter';
 
-export function App () {
-const [contacts,setContacts] = useState(JSON.parse(window.localStorage.getItem('contacts') ) ?? []);
-const [filter, setFilter]=useState('');
+export function App() {
+  const [contacts, setContacts] = useState(
+    JSON.parse(window.localStorage.getItem('contacts')) ?? []
+  );
+  const [filter, setFilter] = useState('');
 
-
-useEffect(()=>{window.localStorage.setItem('contacts', JSON.stringify(contacts))},[contacts])
+  useEffect(() => {
+    window.localStorage.setItem('contacts', JSON.stringify(contacts));
+  }, [contacts]);
 
   // componentDidMount() {
   //   const localStoradgeContacts = localStorage.getItem('contacts');
@@ -25,8 +28,7 @@ useEffect(()=>{window.localStorage.setItem('contacts', JSON.stringify(contacts))
   //     localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
   //   }
   // }
- const formData = data => {
-   
+  const formData = data => {
     const contact = {
       id: nanoid(),
       name: data.name,
@@ -34,53 +36,42 @@ useEffect(()=>{window.localStorage.setItem('contacts', JSON.stringify(contacts))
     };
 
     setContacts(prevState => {
-      
-      const repetitionCheck = contacts.some(
-        p => p.name === contact.name
-      );
+      const repetitionCheck = contacts.some(p => p.name === contact.name);
 
       if (repetitionCheck) {
         return Notiflix.Notify.info('Этот контакт уже добавлен');
-        
-      } 
-      return ([contact, ...prevState])  
-      
-     
-     
+      }
+      return [contact, ...prevState];
     });
-    console.log(contacts , 'ferfer')
+    console.log(contacts, 'ferfer');
   };
 
-  console.log(contacts , 'ferfer12')
- const onChangeFilter = e => {
+  console.log(contacts, 'ferfer12');
+  const onChangeFilter = e => {
     setFilter(e.target.value);
   };
-const deleteContact = id => {     
- return setContacts(prevState => {
-  return prevState.filter(c => c.id !== id)
- }
-  
-   );
-  }
+  const deleteContact = id => {
+    return setContacts(prevState => {
+      return prevState.filter(c => c.id !== id);
+    });
+  };
 
+  const normolizeFilter = filter.toLowerCase();
 
- 
-    const normolizeFilter = filter.toLowerCase();
-    console.log(contacts , 'fefer');
-    const filterContacts = contacts.filter(contact =>{return contact.name.toLowerCase().includes(normolizeFilter)});
-    console.log(filterContacts , '123456');
+  // if(!contacts){
+  //  return
+  // }
+  const filterContacts = contacts.filter(contact => {
+    return contact.name.toLowerCase().includes(normolizeFilter);
+  });
 
-    return (
-      <div>
-        <h1>Phonebook</h1>
-        <Form onSubmitb={formData} />
-        <h1>Contacts</h1>
-        <Filter value={filter} onChange={onChangeFilter} />
-        <ContactList
-          dataSubscribers={filterContacts}
-          onClick={deleteContact}
-        />
-      </div>
-    );
-  
+  return (
+    <div>
+      <h1>Phonebook</h1>
+      <Form onSubmitb={formData} />
+      <h1>Contacts</h1>
+      <Filter value={filter} onChange={onChangeFilter} />
+      <ContactList dataSubscribers={filterContacts} onClick={deleteContact} />
+    </div>
+  );
 }
