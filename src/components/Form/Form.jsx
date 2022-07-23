@@ -1,14 +1,14 @@
 import {useState} from 'react';
 import PropTypes from 'prop-types';
 import css from '../Form/Form.module.css';
-export function Form ({onSubmitb}) {
+export function Form ({returnInputData}) {
   const [name, setName]=useState('');
   const [number, setNumber] = useState('');
 
  
  const onSubmit = e => {
     e.preventDefault();
-   onSubmitb({name,number});
+    returnInputData({name,number});
    reset();
   };
 
@@ -68,5 +68,5 @@ const reset = () => {
   
 }
 Form.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
+  returnInputData: PropTypes.func.isRequired,
 }

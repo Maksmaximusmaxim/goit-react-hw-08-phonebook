@@ -39,9 +39,6 @@ export function App() {
         return Notiflix.Notify.info('Этот контакт уже добавлен');
       }
     setContacts(prevState => {
-      
-
-    
     return [contact, ...prevState];
     });
     console.log(contacts, 'ferfer');
@@ -69,7 +66,7 @@ export function App() {
   return (
     <div>
       <h1>Phonebook</h1>
-      <Form onSubmitb={formData} />
+      <Form returnInputData={formData} />
       <h1>Contacts</h1>
       <Filter value={filter} onChange={onChangeFilter} />
       <ContactList dataSubscribers={filterContacts} onClick={deleteContact} />
