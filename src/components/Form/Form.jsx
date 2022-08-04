@@ -1,14 +1,15 @@
 import {useState} from 'react';
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import {addContact} from 'components/redux/store'
 import css from '../Form/Form.module.css';
-export function Form ({returnInputData}) {
+export function Form () {
   const [name, setName]=useState('');
   const [number, setNumber] = useState('');
 
- 
+ const dispatch = useDispatch()
  const onSubmit = e => {
     e.preventDefault();
-    returnInputData({name,number});
+    dispatch(addContact({name,number}));
    reset();
   };
 
@@ -67,6 +68,4 @@ const reset = () => {
     );
   
 }
-Form.propTypes = {
-  returnInputData: PropTypes.func.isRequired,
-}
+

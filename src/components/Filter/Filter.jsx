@@ -1,14 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-export const Filter = ({ value, onChange }) => {
-  console.log(value);
+import { useDispatch , useSelector } from 'react-redux';
+import {onChangeFilter} from 'components/redux/store'
+export const Filter = () => {
+  
+  const dispatch = useDispatch();
+  const selector = useSelector(state => state.filter);
   return (
     <label>
-      Найти контакт <input type="text" value={value} onChange={onChange} />
+      Найти контакт <input type="text" value={selector} onChange={(e)=>dispatch(onChangeFilter(e.target.value))} />
     </label>
   );
 };
-Filter.propTypes = {
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-};
+
