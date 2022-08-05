@@ -1,50 +1,40 @@
-import { configureStore,  createSlice} from '@reduxjs/toolkit'
+import { configureStore,  createSlice  } from '@reduxjs/toolkit'
 import { nanoid } from 'nanoid';
 import Notiflix from 'notiflix';
 
 const sliceContact = createSlice({
     name:'contacts',
-    initialState:[],
+    initialState:{  items: [],filter: ''},
     reducers:{
       deleteContact(state , action){
-       return state.filter(c => c.id !== action.payload)
+       return state.items.filter(c => c.id !== action.payload)
       },
       addContact(state,action){
-        console.log(action)
+        console.log( state , 'ijijoii')
         const contact = {
             id: nanoid(),
             name: action.payload.name,
             number: action.payload.number,
           };
-        const repetitionCheck = state.some(p => p.name === contact.name);
+        const repetitionCheck = state.items.some(p => p.name === contact.name);
         if (repetitionCheck) {
               return Notiflix.Notify.info('Этот контакт уже добавлен');
             }
-         
-          return [...state , action.payload] 
+          //  return state.push(action.payload)
+           return [...state.items , action.payload] 
           
-      }
+      },
+      filterContact(state,action){
+        return [...state.filter , action.payload]
+    }
     }
 })
-export const {deleteContact ,addContact } = sliceContact.actions;
+export const {deleteContact ,addContact , filterContact } = sliceContact.actions;
 
-const sliceFilter = createSlice({
-    name:'filter',
-    initialState:'',
-    reducers:{
-        onChangeFilter(state, action){
-            return [...state , action.payload]
-        }
-    }
-})
-export const {onChangeFilter} = sliceFilter.actions
-// const contactsReducer = createReducer([],{
-// [deleteContact]:(state , action) => 
-//     state.filter(c => c.id !== action.payload),
-// })
+
 export const store = configureStore({
   reducer: {
     contacts:sliceContact.reducer,
-    filter:sliceFilter.reducer,
+
   },
 })

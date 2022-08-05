@@ -7,9 +7,9 @@ import { Filter } from './Filter/Filter';
 
 
 export function App() {
-  // const [contacts, setContacts] = useState(
-  //   JSON.parse(window.localStorage.getItem('contacts')) ?? []
-  // );
+//   const [contacts, setContacts] = useState(
+//     JSON.parse(window.localStorage.getItem('contacts')) ?? []
+//   );
   // const [filter, setFilter] = useState('');
 
   // useEffect(() => {
@@ -44,13 +44,17 @@ export function App() {
   //     return prevState.filter(c => c.id !== id);
   //   });
   // };
-  const selectorFilter = useSelector(state => state.filter);
-  const selectorContacts = useSelector(state => state.contacts);
+
+  const selectorFilter = useSelector(state =>   state.contacts.filter );
+
+  const selectorContacts = useSelector(state => state.contacts.items);
 
   const normolizeFilter = selectorFilter.toLowerCase();
+
   const filterContacts = selectorContacts.filter(contact => {
     return contact.name.toLowerCase().includes(normolizeFilter);
   });
+
   // if(!contacts){
   //  return
   // }

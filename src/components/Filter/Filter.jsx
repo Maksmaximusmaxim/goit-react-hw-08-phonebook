@@ -1,13 +1,13 @@
 import React from 'react';
 import { useDispatch , useSelector } from 'react-redux';
-import {onChangeFilter} from 'components/redux/store'
+import {filterContact} from 'components/redux/store'
 export const Filter = () => {
   
   const dispatch = useDispatch();
-  const selector = useSelector(state => state.filter);
+  const selector = useSelector(state => state.contacts.filter);
   return (
     <label>
-      Найти контакт <input type="text" value={selector} onChange={(e)=>dispatch(onChangeFilter(e.target.value))} />
+      Найти контакт <input type="text" value={selector} onChange={(e)=>dispatch(filterContact(e.target.value))} />
     </label>
   );
 };
