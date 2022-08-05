@@ -1,14 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { ContactItem } from './ContactItem';
 import {  useSelector  } from 'react-redux';
 export const ContactList = () => {
 
-const selector = useSelector(state => state.contacts.items)
+
+const {items , filter} = useSelector(state =>  state.contacts );
+console.log(filter , 'qwe')
+const normolizeFilter = filter.toLowerCase();
+const filterContacts = items.filter(contact => {
+  return contact.name.toLowerCase().includes(normolizeFilter);
+});
 
   return (
     <ul>
-      {selector.map(({ id, name, number }) => {
+      {filterContacts && filterContacts.map(({ id, name, number }) => {
         return (
           <ContactItem
             key={id}
@@ -21,8 +26,4 @@ const selector = useSelector(state => state.contacts.items)
       })}
     </ul>
   );
-};
-ContactList.propTypes = {
-  dataSubscribers: PropTypes.array.isRequired,
- 
 };

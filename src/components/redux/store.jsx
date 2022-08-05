@@ -7,7 +7,7 @@ const sliceContact = createSlice({
     initialState:{  items: [],filter: ''},
     reducers:{
       deleteContact(state , action){
-       return state.items.filter(c => c.id !== action.payload)
+        return {...state , items:state.items.filter(c => c.id !== action.payload)}
       },
       addContact(state,action){
         console.log( state , 'ijijoii')
@@ -20,12 +20,14 @@ const sliceContact = createSlice({
         if (repetitionCheck) {
               return Notiflix.Notify.info('Этот контакт уже добавлен');
             }
-          //  return state.push(action.payload)
-           return [...state.items , action.payload] 
-          
+           state.items.push(contact)
+          //  return { items: [...state.items, contact], filter: state.filter }
       },
       filterContact(state,action){
-        return [...state.filter , action.payload]
+        
+        return {...state , filter: action.payload }
+       
+        
     }
     }
 })
