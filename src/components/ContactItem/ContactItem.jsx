@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import {deleteContact} from 'components/redux/store'
-export const ContactItem = ({ id, name, number}) => {
-  console.log(id , 'qweqwewqe')
-const dispatch = useDispatch()
+import { deleteContact } from 'components/redux/store';
+export const ContactItem = ({ id, name, number }) => {
+  console.log(id, 'qweqwewqe');
+  const dispatch = useDispatch();
   return (
     <li>
       {name} : {number}
@@ -18,5 +18,4 @@ ContactItem.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   number: PropTypes.string.isRequired,
-  
 };
