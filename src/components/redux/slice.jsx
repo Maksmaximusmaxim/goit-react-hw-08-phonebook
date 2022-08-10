@@ -14,7 +14,7 @@ const sliceContact = createSlice({
       };
     },
     addContact(state, action) {
-      console.log(state, 'ijijoii');
+     
       const contact = {
         id: nanoid(),
         name: action.payload.name,
