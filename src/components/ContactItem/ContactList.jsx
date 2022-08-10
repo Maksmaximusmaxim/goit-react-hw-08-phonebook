@@ -4,6 +4,9 @@ import { useSelector } from 'react-redux';
 import {useGetPokemonByNameQuery} from 'components/redux/contactsApi';
 export const ContactList = () => {
   const { data, error, isLoading } = useGetPokemonByNameQuery('bulbasaur');
+console.log(data)
+console.log(error)
+console.log(isLoading)
   console.log(useGetPokemonByNameQuery);
   const { items, filter } = useSelector(state => state.contacts);
   console.log(filter, 'qwe');
