@@ -1,24 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import {
-  persistStore,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
-} from 'redux-persist';
-import { saveLocalStoradge } from './slice';
+import { pokemonApi } from 'components/redux/contactsApi';
 
 export const store = configureStore({
   reducer: {
-    contacts: saveLocalStoradge,
+    [pokemonApi.reducerPath]: pokemonApi.reducer,
   },
-  middleware: getDefaultMiddleware =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
-    }),
+  middleware: getDefaultMiddleware =>[...getDefaultMiddleware(),pokemonApi.middleware]
+    
 });
-export const persistor = persistStore(store);
