@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addContact } from 'components/redux/store';
+import { addContact } from 'components/redux/slice';
 import css from '../Form/Form.module.css';
 export function Form() {
   const [name, setName] = useState('');
