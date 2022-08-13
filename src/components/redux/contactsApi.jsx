@@ -1,15 +1,47 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-
-export const pokemonApi = createApi({
-  reducerPath: 'pokemonApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://pokeapi.co/api/v2/' }),
-  endpoints: (builder) => ({
-    getPokemonByName: builder.query({
-      query: (name) => {console.log(name, 'fere');return`pokemon/${name}`},
-    }),
+export const contactsApi = createApi({
+  reducerPath: 'contacts',
+  baseQuery: fetchBaseQuery({
+    baseUrl: 'https://62f358ce18493ca21f415499.mockapi.io/api/v1/',
   }),
-})
+  tagTypes: ['Contacts'], //под каким ключом сохраняется в кеше
+  endpoints: builder => ({
+    getContacts: builder.query({
+      //квери на гэт запрос
+      query: () => 'contacts',
+      providesTags: ['Contacts'], //под каким ключом эти контакты весят
+    }),
+    deleteContacts: builder.mutation({
+      // все остальное мутатион
+      query: id => ({
+        url: `contacts/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: [{ type: 'Contacts' }], // инвалидируем
+    }),
+    createContacts: builder.mutation({
+      query: newContact => ({
+        url: 'contacts',
+        method: 'POST',
+        body: newContact,
+      }),
+      invalidatesTags: [{ type: 'Contacts' }],
+    }),
+    // updateContacts:builder.mutation({
+    //   query:(filterContacts)=>({
+    //     url: 'contacts',
+    //     method:'PUT',
+    //     body: filterContacts,
+    //   }),
+    //   invalidatesTags: [{ type: 'Contacts' }],
+    // })
+  }),
+});
 
-
-export const { useGetPokemonByNameQuery } = pokemonApi
+export const {
+  useGetContactsQuery,
+  useDeleteContactsMutation,
+  useCreateContactsMutation,
+  useUpdateContactsMutation,
+} = contactsApi;

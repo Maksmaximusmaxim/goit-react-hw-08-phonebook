@@ -1,25 +1,36 @@
 import React from 'react';
 import { ContactItem } from './ContactItem';
 import { useSelector } from 'react-redux';
-import {useGetPokemonByNameQuery} from 'components/redux/contactsApi';
+import {
+  useGetContactsQuery,
+  useDeleteContactsMutation,
+} from 'components/redux/contactsApi';
 export const ContactList = () => {
-  const { data, error, isLoading } = useGetPokemonByNameQuery('bulbasaur');
-console.log(data)
-console.log(error)
-console.log(isLoading)
-  console.log(useGetPokemonByNameQuery);
-  const { items, filter } = useSelector(state => state.contacts);
-  console.log(filter, 'qwe');
-  const normolizeFilter = filter.toLowerCase();
-  const filterContacts = items.filter(contact => {
-    return contact.name.toLowerCase().includes(normolizeFilter);
-  });
+  const selector = useSelector(state => state.filter.filter);
+  console.log(selector);
+  const { data } = useGetContactsQuery();
+  const [deleteContact] = useDeleteContactsMutation();
+
+  const normolizeFilter = selector.toLowerCase();
+  const filterContacts =
+    data &&
+    data.filter(contact => {
+      return contact.name.toLowerCase().includes(normolizeFilter);
+    });
 
   return (
     <ul>
       {filterContacts &&
-        filterContacts.map(({ id, name, number }) => {
-          return <ContactItem key={id} id={id} name={name} number={number} />;
+        filterContacts.map(({ id, name, phone }) => {
+          return (
+            <ContactItem
+              key={id}
+              id={id}
+              name={name}
+              number={phone}
+              onDelete={deleteContact}
+            />
+          );
         })}
     </ul>
   );

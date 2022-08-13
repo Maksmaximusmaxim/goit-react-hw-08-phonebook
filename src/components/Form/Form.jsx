@@ -1,15 +1,24 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addContact } from 'components/redux/slice';
+import Notiflix from 'notiflix';
+
 import css from '../Form/Form.module.css';
+import {useCreateContactsMutation ,useGetContactsQuery } from 'components/redux/contactsApi'
 export function Form() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+  const [createContacts] = useCreateContactsMutation()
+  const { data } = useGetContactsQuery();
+  // console.log(data)
 
-  const dispatch = useDispatch();
+
   const onSubmit = e => {
     e.preventDefault();
-    dispatch(addContact({ name, number }));
+  const repetitionCheck =data && data.some(p => p.name === name);
+        if (repetitionCheck) {
+          reset();
+          return Notiflix.Notify.info('Этот контакт уже добавлен');
+        }
+    createContacts({ name, phone:number });
     reset();
   };
 

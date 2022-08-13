@@ -1,12 +1,12 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { filterContact } from 'components/redux/slice';
+import { filterContact } from 'components/redux/filter';
 export const Filter = () => {
   const dispatch = useDispatch();
-  const selector = useSelector(state => state.contacts.filter);
+  const selector = useSelector(state => state.filter.filter);
   return (
     <label>
-      Найти контакт{' '}
+      Найти контакт
       <input
         type="text"
         value={selector}
