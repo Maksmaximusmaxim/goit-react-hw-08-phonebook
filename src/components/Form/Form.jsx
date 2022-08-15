@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Notiflix from 'notiflix';
 
 import css from '../Form/Form.module.css';
-import {useCreateContactsMutation ,useGetContactsQuery } from 'components/redux/contactsApi'
+import {useCreateContactsMutation ,useGetContactsQuery } from 'redux/contactsApi'
 export function Form() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');

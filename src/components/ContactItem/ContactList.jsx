@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import {
   useGetContactsQuery,
   useDeleteContactsMutation,
-} from 'components/redux/contactsApi';
+} from 'redux/contactsApi';
 export const ContactList = () => {
   const selector = useSelector(state => state.filter.filter);
   console.log(selector);
