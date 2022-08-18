@@ -1,12 +1,17 @@
 import React from 'react';
 import css from 'components/Form/Form.module.css';
 import { useState } from 'react';
+import { useSingUpMutation} from 'redux/userApi';
 export const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+  // const [token]=useState(null)
+  const [singUp] = useSingUpMutation();
+
   const onSubmit = e => {
     e.preventDefault();
+    singUp({name, email , password });
     reset();
   };
   const reset = () => {
