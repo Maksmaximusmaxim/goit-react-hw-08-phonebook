@@ -7,7 +7,7 @@ import {
 } from 'redux/contactsApi';
 export const ContactList = () => {
   const selector = useSelector(state => state.filter.filter);
-  console.log(selector);
+  
   const { data } = useGetContactsQuery();
   const [deleteContact] = useDeleteContactsMutation();
 
