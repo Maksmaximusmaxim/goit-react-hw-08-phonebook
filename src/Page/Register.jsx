@@ -2,7 +2,7 @@ import React from 'react';
 import css from 'components/Form/Form.module.css';
 import { useState } from 'react';
 import { useSingUpMutation} from 'redux/userApi';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 
 export const Register = () => {
   const [email, setEmail] = useState('');
