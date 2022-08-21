@@ -9,23 +9,23 @@ import { Login } from 'Page/Login';
 export function App() {
   return (
     <Routes>
-     <Route path='/' element={<Navigation/>}>
-     <Route path="/register" element={<Register/>}/>
-      <Route path="/login" element={<Login/>}/>
-      <Route
-        path="/contacts"
-        element={
-          <div>
-            <h1>Phonebook</h1>
-            <Form />
-            <h1>Contacts</h1>
-            <Filter />
-            <ContactList />
-          </div>
-        }
-      />
-      <Route path='*' element={<h1>hi</h1>}/>
-     </Route>
+      <Route path="/" element={<Navigation />}>
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/contacts"
+          element={
+            <div>
+              <h1>Phonebook</h1>
+              <Form />
+              <h1>Contacts</h1>
+              <Filter />
+              <ContactList />
+            </div>
+          }
+        />
+        <Route path="*" element={<h1>hi</h1>} />
+      </Route>
     </Routes>
   );
 }

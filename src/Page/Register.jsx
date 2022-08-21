@@ -8,13 +8,13 @@ export const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
-
+  const [logIn] = useState(true);
   const [singUp] = useSingUpMutation();
 // const selector = useSelector(state => state)
 // console.log(selector)
   const onSubmit = e => {
     e.preventDefault();
-    singUp({name, email , password , isLogIn:true});
+    singUp({name, email , password , logIn});
     reset();
   };
   const reset = () => {
