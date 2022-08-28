@@ -6,13 +6,15 @@ import { Filter } from './Filter/Filter';
 import { Navigation } from 'components/Navigation/Navigation';
 import { Register } from 'Page/Register';
 import { Login } from 'Page/Login';
+import { ProvideRoute } from './ProvideRoute';
 export function App() {
   return (
     <Routes>
       <Route path="/" element={<Navigation />}>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route
+        <Route path='/' element={<ProvideRoute/>}>
+           <Route
           path="/contacts"
           element={
             <div>
@@ -24,6 +26,9 @@ export function App() {
             </div>
           }
         />
+        </Route>
+       
+   
         <Route path="*" element={<h1>hi</h1>} />
       </Route>
     </Routes>

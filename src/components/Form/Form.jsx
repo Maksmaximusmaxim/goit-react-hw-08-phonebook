@@ -19,7 +19,7 @@ export function Form() {
           reset();
           return Notiflix.Notify.info('Этот контакт уже добавлен');
         }
-    createContacts({ name, phone:number });
+    createContacts({ name, number });
     reset();
   };
 

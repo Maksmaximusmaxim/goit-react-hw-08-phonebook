@@ -3,7 +3,17 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const contactsApi = createApi({
   reducerPath: 'contacts',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://62f358ce18493ca21f415499.mockapi.io/api/v1/',
+    baseUrl: 'https://connections-api.herokuapp.com/',
+    prepareHeaders: (headers, { getState }) => {
+      const token = getState().user.token;
+
+      //здесь добывается токен для хедера
+      if (token) {
+        headers.set('authorization', `Bearer ${token}`)
+      }
+  
+      return headers
+    },
   }),
  
   tagTypes: ['Contacts'], //под каким ключом сохраняется в кеше
@@ -19,7 +29,7 @@ export const contactsApi = createApi({
         url: `contacts/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: [{ type: 'Contacts' }], // инвалидируем
+      invalidatesTags: [{ type: 'Contacts' }], // инвалидируем(обновляем)
     }),
     createContacts: builder.mutation({
       query: newContact => ({

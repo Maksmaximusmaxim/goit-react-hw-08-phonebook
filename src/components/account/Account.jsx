@@ -1,13 +1,17 @@
 import { useSelector } from 'react-redux';
+import { useLogOutMutation , useGetUserQuery } from 'redux/userApi';
+
 export const Account = () => {
-  const name = useSelector(state => { console.log(state.userApi.mutations) ;return state?.userApi?.mutations?.name?.user?.name ??   ("rt")});
-  console.log(name)
-  console.log(name ,"qwe");
+  const {data}=useGetUserQuery()
+  console.log(data)
+const name= useSelector(state => state.user.name)
+const [logOut]=useLogOutMutation()
+console.log(name)
   return (
     <div>
       <img src="" alt="" />
-      <p>привет , {name}</p>
-      <button type="button" >выйти</button>
+      <p>привет ,{name}</p>
+      <button type="button" onClick={()=>logOut()} >выйти</button>
     </div>
   );
 };

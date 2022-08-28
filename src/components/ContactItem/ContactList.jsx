@@ -21,13 +21,13 @@ export const ContactList = () => {
   return (
     <ul>
       {filterContacts &&
-        filterContacts.map(({ id, name, phone }) => {
+        filterContacts.map(({ id, name, number }) => {
           return (
             <ContactItem
               key={id}
               id={id}
               name={name}
-              number={phone}
+              number={number}
               onDelete={deleteContact}
             />
           );
