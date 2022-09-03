@@ -12,25 +12,23 @@ export function App() {
   return (
     <Routes>
       <Route path="/" element={<Navigation />}>
-        <Route path="/" element={<PublicRoute/>}>
- <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
+        <Route index element={<h1>Это базовая страница моего приложения</h1>}/>
+        <Route path="/" element={<PublicRoute />}>
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
         </Route>
-       
+
         <Route path="/" element={<ProvideRoute />}>
-          
           <Route
             path="/contacts"
             element={
               <div>
-               
-                  <h1>Phonebook</h1>
-                  <Form />
-               
-                  <h1>Contacts</h1>
-                  <Filter />
-                  <ContactList />
-              
+                <h1>Phonebook</h1>
+                <Form />
+
+                <h1>Contacts</h1>
+                <Filter />
+                <ContactList />
               </div>
             }
           />
@@ -39,5 +37,5 @@ export function App() {
         <Route path="*" element={<h1>hi</h1>} />
       </Route>
     </Routes>
-  );
+  );  
 }
