@@ -8,8 +8,10 @@ font-style: normal;
 font-weight: 700;
 font-size: 16px;
 border-radius: 4px;
-border:none
-
+border:none;
+margin-left:auto;
+margin-right: auto;
+margin-top: 15px;
 }
 .formbtn:hover{
     background: #118df2;
@@ -23,9 +25,14 @@ height: 40px;
 padding-right: 10px;
 padding-left: 10px;
 font-size: 16px;
-
+display: block;
+margin-top: 10px;
 }
 .label{
     margin-top: 15px;
     display: block;
 }
+/* form{
+ display: flex;
+  justify-content: center;
+} */

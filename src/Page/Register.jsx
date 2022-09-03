@@ -40,7 +40,8 @@ export const Register = () => {
     }
   };
   return (
-    <form onSubmit={onSubmit}>
+    <section>
+          <form onSubmit={onSubmit}>
       <label className={css.label}>
         Имя
         <input
@@ -83,5 +84,7 @@ export const Register = () => {
         Регестрация
       </button>
     </form>
+    </section>
+
   );
 };

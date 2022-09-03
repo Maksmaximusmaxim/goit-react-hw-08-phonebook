@@ -30,7 +30,8 @@ const reset = ()=>{
     }
   };
   return (
-    <form
+    <section className={css.section}>
+         <form
     onSubmit={onSubmit}
     >
       <label className={css.label}>
@@ -63,5 +64,7 @@ const reset = ()=>{
         Вход
       </button>
     </form>
+    </section>
+ 
   );
 };

@@ -43,7 +43,8 @@ export function Form() {
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <section>
+        <form onSubmit={onSubmit}>
       <label className={css.label}>
         имя
         <input
@@ -76,5 +77,7 @@ export function Form() {
         Добавить контакт
       </button>
     </form>
+    </section>
+  
   );
 }

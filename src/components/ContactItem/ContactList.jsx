@@ -1,6 +1,6 @@
 import React from 'react';
 import { ContactItem } from './ContactItem';
-import { useSelector } from 'react-redux';
+import { useSelector  } from 'react-redux';
 import {
   useGetContactsQuery,
   useDeleteContactsMutation,
@@ -10,7 +10,6 @@ export const ContactList = () => {
   
   const { data } = useGetContactsQuery();
   const [deleteContact] = useDeleteContactsMutation();
-
   const normolizeFilter = selector.toLowerCase();
   const filterContacts =
     data &&
@@ -23,13 +22,16 @@ export const ContactList = () => {
       {filterContacts &&
         filterContacts.map(({ id, name, number }) => {
           return (
-            <ContactItem
+            <section>
+                <ContactItem
               key={id}
               id={id}
               name={name}
               number={number}
               onDelete={deleteContact}
             />
+            </section>
+          
           );
         })}
     </ul>

@@ -1,0 +1,15 @@
+.nav{
+    display: flex;
+    justify-content: center;
+    
+}
+.link + .link{
+    margin-left: 10px;
+    
+}
+.link{
+    color: #2196F3;
+    font-weight: 700;
+    text-decoration: none;
+}
+
