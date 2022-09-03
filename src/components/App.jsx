@@ -7,13 +7,18 @@ import { Navigation } from 'components/Navigation/Navigation';
 import { Register } from 'Page/Register';
 import { Login } from 'Page/Login';
 import { ProvideRoute } from './ProvideRoute';
+import { PublicRoute } from './PublicRoute';
 export function App() {
   return (
     <Routes>
       <Route path="/" element={<Navigation />}>
-        <Route path="/register" element={<Register />} />
+        <Route path="/" element={<PublicRoute/>}>
+ <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        </Route>
+       
         <Route path="/" element={<ProvideRoute />}>
+          
           <Route
             path="/contacts"
             element={

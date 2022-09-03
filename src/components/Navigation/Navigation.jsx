@@ -16,7 +16,7 @@ export const Navigation = () => {
 
         {isLogIn && (
           <>
-            <NavLink className={css.link} to="/contacts">Ваши контакты</NavLink>
+            {/* <NavLink className={css.link} to="/contacts">Ваши контакты</NavLink> */}
             <Account />
           </>
         )}

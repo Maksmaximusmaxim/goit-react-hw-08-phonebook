@@ -1,9 +1,9 @@
 import React from "react";
 import { Outlet , Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-export const ProvideRoute =()=>{
+export const PublicRoute =()=>{
     const token = useSelector(state => state.user.token)
     console.log(token , 'frgeg')
-return token ? <><Outlet/></>: <Navigate to="/login" replace/>
+return token ? <Navigate to="/contacts" replace/> : <><Outlet/></>
 
 }
